@@ -1,7 +1,6 @@
 from database import initialize_database
 from models import VideoRecord
 
-
 session = initialize_database()
 
 
@@ -21,9 +20,12 @@ def list_video_records():
     return results
 
 
+def number_of_video_records():
+    return session.query(VideoRecord).count()
+
+
 def delete_video_record(name):
     result = session.query(VideoRecord).filter_by(video_name=name).first()
     session.delete(result)
     session.commit()
     return True
-
