@@ -1,13 +1,19 @@
-from database import initialize_database
+import sqlalchemy.exc
 from models import VideoRecord
+from database import initialize_database
 
 session = initialize_database()
 
 
 def add_video_record(name, path, hour, minutes, seconds, ampm):
-    video_record = VideoRecord(video_name=name, video_path=path, hour=hour, minutes=minutes, seconds=seconds, ampm=ampm)
-    session.add(video_record)
-    session.commit()
+    try:
+        video_record = VideoRecord(video_name=name, video_path=path, hour=hour, minutes=minutes, seconds=seconds,
+                                   ampm=ampm)
+        session.add(video_record)
+        session.commit()
+    except sqlalchemy.exc.IntegrityError as e:
+        session.rollback()
+        raise
 
 
 def get_video_record(name):

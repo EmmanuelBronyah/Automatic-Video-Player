@@ -7,7 +7,7 @@ class VideoRecord(Base):
     __tablename__ = 'video_records'
 
     id: Mapped[int] = mapped_column(primary_key=True, index=True)
-    video_name: Mapped[str] = mapped_column(String(25))
+    video_name: Mapped[str] = mapped_column(String(25), unique=True)
     video_path: Mapped[str]
     hour: Mapped[int] = mapped_column(Integer)
     minutes: Mapped[int] = mapped_column(Integer)
