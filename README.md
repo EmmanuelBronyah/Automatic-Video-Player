@@ -8,6 +8,7 @@ you give.
 > The video files of the video records saved are only
 opened once within a 24hour range and the application 
 only saves up to 12 videos records.
+> The windows setup file has been included in the repo.
 
 ## Features
 * **Takes video name:** A unique name to describe the 
